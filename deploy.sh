@@ -9,7 +9,7 @@ set -e
 set -x
 
 # Build the target 
-sh build.sh
+bash build.sh
 
 cd build/HTML5
 git init .
