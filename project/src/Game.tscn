@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Environment/CuttingBoard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Game.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CuttingBoard" parent="." instance=ExtResource( 1 )]
+position = Vector2( 441, 239 )
+fly_in_source = Vector2( 500, 500 )
+fly_out_destination = Vector2( -500, 500 )
+flight_duration = 1.0
