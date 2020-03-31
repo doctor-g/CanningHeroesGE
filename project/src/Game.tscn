@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Environment/Workstation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Game.gd" type="Script" id=2]
@@ -7,6 +7,40 @@
 [ext_resource path="res://src/Environment/Tray.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/GameTimer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/MainMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/Interstitial.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "InterstitialFlyBy"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Interstitial:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 0.5, 0.5, 2, 2 ),
+"update": 0,
+"values": [ Vector2( -1612.8, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_clear_food"
+}, {
+"args": [  ],
+"method": "_on_interstitialflyby_finished"
+} ]
+}
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -52,5 +86,11 @@ wait_time = 30.0
 one_shot = true
 
 [node name="MainMenu" parent="." instance=ExtResource( 7 )]
+
+[node name="Interstitial" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1920, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/InterstitialFlyBy = SubResource( 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="game_selected" from="MainMenu" to="." method="_on_MainMenu_game_selected"]

@@ -5,4 +5,7 @@ class_name Food
 # warning-ignore:unused_signal
 signal processed(food)
 
-var enabled := true
+var enabled := true setget _set_enabled
+
+func _set_enabled(value)->void:
+	enabled = value
