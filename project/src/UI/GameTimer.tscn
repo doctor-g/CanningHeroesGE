@@ -20,7 +20,7 @@ margin_right = 20.0
 margin_bottom = 14.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 2 )
-text = "0"
+text = "30"
 __meta__ = {
 "_edit_use_anchors_": false
 }

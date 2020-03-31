@@ -1,6 +1,4 @@
-extends Area2D
-
-signal cleaned()
+extends "../Food.gd"
 
 # How far to move to count as movement when scrubbing
 export var movement_threshold_squared := 1
@@ -18,13 +16,13 @@ var _is_clean := false
 onready var dirt : Sprite = $Carrot/Dirt
 
 func _process(delta:float):
-	if _is_scrubbing and not _is_clean:
+	if enabled and _is_scrubbing and not _is_clean:
 		var prev :Color = dirt.self_modulate
 		var new_alpha : float = prev.a - clean_rate * delta
 		if new_alpha <= 0:
 			dirt.visible = false
 			_is_clean = true
-			emit_signal("cleaned")
+			emit_signal("processed")
 		else:
 			dirt.self_modulate = Color(prev.r, prev.g, prev.b, new_alpha)
 		_is_scrubbing = false

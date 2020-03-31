@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Food",
+"language": "GDScript",
+"path": "res://src/Food/Food.gd"
+}, {
 "base": "Control",
 "class": "GameTimer",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://src/Util/TweenPool.gd"
 } ]
 _global_script_class_icons={
+"Food": "",
 "GameTimer": "",
 "Tray": "",
 "TweenPool": ""
@@ -35,6 +41,10 @@ _global_script_class_icons={
 config/name="Canning Heroes"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
