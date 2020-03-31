@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Sprite",
+"class": "Tray",
+"language": "GDScript",
+"path": "res://src/Environment/Tray.gd"
+}, {
+"base": "Node",
+"class": "TweenPool",
+"language": "GDScript",
+"path": "res://src/Util/TweenPool.gd"
+} ]
 _global_script_class_icons={
-
+"Tray": "",
+"TweenPool": ""
 }
 
 [application]

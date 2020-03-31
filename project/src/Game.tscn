@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/Environment/CuttingBoard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Environment/Workstation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Game.gd" type="Script" id=2]
 [ext_resource path="res://assets/props/table.png" type="Texture" id=3]
+[ext_resource path="res://src/Util/TweenPool.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Environment/Tray.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -11,30 +13,26 @@ script = ExtResource( 2 )
 texture = ExtResource( 3 )
 centered = false
 
-[node name="CuttingBoards" type="Node" parent="."]
+[node name="Workstations" type="Node" parent="."]
 
-[node name="CuttingBoard1" parent="CuttingBoards" instance=ExtResource( 1 )]
-position = Vector2( 517.533, 863.222 )
-fly_in_source = Vector2( 500, 500 )
-fly_out_destination = Vector2( -500, 500 )
-flight_duration = 1.0
+[node name="Workstation1" parent="Workstations" instance=ExtResource( 1 )]
+position = Vector2( 569.647, 886.77 )
 
-[node name="CuttingBoard2" parent="CuttingBoards" instance=ExtResource( 1 )]
-position = Vector2( 1665.64, 455.073 )
+[node name="Workstation2" parent="Workstations" instance=ExtResource( 1 )]
+position = Vector2( 1374.2, 886.77 )
+
+[node name="Workstation3" parent="Workstations" instance=ExtResource( 1 )]
+position = Vector2( 1717.75, 390.531 )
 rotation = -1.57079
-fly_in_source = Vector2( 500, 500 )
-fly_out_destination = Vector2( -500, 500 )
-flight_duration = 1.0
 
-[node name="CuttingBoard3" parent="CuttingBoards" instance=ExtResource( 1 )]
-position = Vector2( 285.563, 469.755 )
+[node name="Workstation4" parent="Workstations" instance=ExtResource( 1 )]
+position = Vector2( 281.887, 405.213 )
 rotation = 1.57079
-fly_in_source = Vector2( 500, 500 )
-fly_out_destination = Vector2( -500, 500 )
-flight_duration = 1.0
 
-[node name="CuttingBoard4" parent="CuttingBoards" instance=ExtResource( 1 )]
-position = Vector2( 1372, 866.159 )
-fly_in_source = Vector2( 500, 500 )
-fly_out_destination = Vector2( -500, 500 )
-flight_duration = 1.0
+[node name="Food" type="Node" parent="."]
+
+[node name="TweenPool" parent="." instance=ExtResource( 4 )]
+
+[node name="Tray" parent="." instance=ExtResource( 5 )]
+position = Vector2( 971.923, 267.206 )
+scale = Vector2( 1.5, 1.5 )
