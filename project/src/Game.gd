@@ -1,10 +1,14 @@
-extends Node2D
+extends Node
+
+export(int) var round_duration := 30
 
 var Carrot = preload("res://src/Food/Carrot/CleanableCarrot.tscn")
 
 onready var _workstations := []
 onready var _tween_pool : TweenPool = $TweenPool
 onready var _tray : Tray = $Tray
+onready var _timer : Timer = $Timer
+onready var _ui_timer : GameTimer = $Interface/GameTimer
 
 # Number of fruits completed
 var _completed := 0
@@ -13,6 +17,10 @@ func _ready():
 	_workstations = $Workstations.get_children()
 	for workstation in _workstations:
 		_add_carrot_to(workstation)
+	_timer.start(round_duration)
+	
+func _process(_delta:float):
+	_ui_timer.update_time_remaining(_timer.time_left)
 
 	
 func _add_carrot_to(workstation):
