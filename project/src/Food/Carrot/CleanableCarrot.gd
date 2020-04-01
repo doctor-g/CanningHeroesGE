@@ -22,6 +22,7 @@ func _process(delta:float):
 		if new_alpha <= 0:
 			dirt.visible = false
 			_is_clean = true
+			_set_enabled(false)
 			emit_signal("processed")
 		else:
 			dirt.self_modulate = Color(prev.r, prev.g, prev.b, new_alpha)
@@ -32,3 +33,9 @@ func _process(delta:float):
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenDrag:
 		_is_scrubbing = true
+
+
+func _set_enabled(value)->void:
+	._set_enabled(value)
+	if not enabled:
+		$CollisionShape2D.disabled = true
