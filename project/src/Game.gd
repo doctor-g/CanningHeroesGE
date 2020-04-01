@@ -47,6 +47,11 @@ func _on_interstitialflyby_finished()->void:
 func _process(_delta:float):
 	_ui_timer.update_time_remaining(_timer.time_left if _has_timer_started else float(round_duration))
 
+
+func _input(event):
+	if event.is_action_pressed("engage_warp_speed"):
+		_engage_warp_speed()
+
 	
 func _add_food_to(workstation:Node2D):
 	var tween = _tween_pool.create()
@@ -115,3 +120,10 @@ func _clear_food()->void:
 		$Food.remove_child(food)
 		food.queue_free()
 	_has_timer_started = false
+
+
+func _engage_warp_speed():
+	print(OS.is_debug_build())
+	round_duration = 3
+	$AnimationPlayer.playback_speed = 3
+	paper_fly_duration = .5

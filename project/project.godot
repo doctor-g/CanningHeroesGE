@@ -55,6 +55,14 @@ window/size/test_height=768
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[input]
+
+engage_warp_speed={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
