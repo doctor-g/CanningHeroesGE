@@ -72,19 +72,15 @@ __meta__ = {
 [node name="TextureRect" type="ColorRect" parent="Interface"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -128.0
-margin_bottom = 131.0
+margin_left = -78.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FullscreenToggle" type="TextureButton" parent="Interface/TextureRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -54.0
-margin_top = -54.0
-margin_right = 192.0
-margin_bottom = 190.5
-rect_scale = Vector2( 0.4, 0.4 )
+margin_left = 8.0
+margin_top = 8.0
 toggle_mode = true
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 5 )

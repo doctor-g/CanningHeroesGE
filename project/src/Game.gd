@@ -14,7 +14,11 @@ const CARROT_GAME := [
 	{
 		"food": preload("res://src/Food/Carrot/PeelableCarrot.tscn"),
 		"label": "Peel the Carrots!",
-	}
+	},
+	{
+		"food": preload("res://src/Food/Carrot/ChoppableCarrot.tscn"),
+		"label": "Cut the Carrots!"
+	},
 ]
 
 onready var _workstations := []

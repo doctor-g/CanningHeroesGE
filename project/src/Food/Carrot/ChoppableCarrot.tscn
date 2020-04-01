@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Food/ChopPoint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Food/Carrot/ChoppableCarrot.gd" type="Script" id=2]
+[ext_resource path="res://assets/food/carrot_bottom.png" type="Texture" id=3]
+[ext_resource path="res://assets/food/carrot_top.png" type="Texture" id=4]
+[ext_resource path="res://assets/food/carrot_mid.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Split1"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Offset/CarrotTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Offset/SecondPart:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_spawn_second_chop_point"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Split2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Offset/SecondPart/ThirdPart:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 40 ) ]
+}
+
+[node name="CuttableCarrot" type="Node2D"]
+position = Vector2( 263.963, 304.478 )
+script = ExtResource( 2 )
+
+[node name="Offset" type="Node2D" parent="."]
+position = Vector2( -3.51617, -147.679 )
+
+[node name="CarrotTop" type="Sprite" parent="Offset"]
+texture = ExtResource( 4 )
+
+[node name="SecondPart" type="Node2D" parent="Offset"]
+
+[node name="CarrotMid" type="Sprite" parent="Offset/SecondPart"]
+position = Vector2( -2.39752, 172.304 )
+texture = ExtResource( 5 )
+
+[node name="ThirdPart" type="Node2D" parent="Offset/SecondPart"]
+
+[node name="CarrotBottom" type="Sprite" parent="Offset/SecondPart/ThirdPart"]
+position = Vector2( 9.82184, 234.854 )
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -30, 0 )
+
+[node name="ChopPoint" parent="Offset" instance=ExtResource( 1 )]
+position = Vector2( 0, 108.041 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Split1 = SubResource( 1 )
+anims/Split2 = SubResource( 2 )
+[connection signal="chop" from="Offset/ChopPoint" to="." method="_on_ChopPoint_chop"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

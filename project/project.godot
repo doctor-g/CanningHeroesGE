@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "ChopPoint",
+"language": "GDScript",
+"path": "res://src/Food/ChopPoint.gd"
+}, {
 "base": "Node",
 "class": "Food",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://src/Util/TweenPool.gd"
 } ]
 _global_script_class_icons={
+"ChopPoint": "",
 "Food": "",
 "GameTimer": "",
 "Tray": "",
@@ -62,6 +68,10 @@ engage_warp_speed={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
