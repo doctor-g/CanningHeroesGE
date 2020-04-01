@@ -44,7 +44,7 @@ func _peel():
 		
 # Remove the interaction areas if they still exist
 func _remove_interaction_areas()->void:
-	if is_instance_valid(_interaction_area) and _sprite.has_node(_interaction_area.get_path()):
+	if is_instance_valid(_interaction_area) and _interaction_area.get_parent()==_sprite:
 		_sprite.remove_child(_interaction_area)
 		_interaction_area.queue_free()
 		
