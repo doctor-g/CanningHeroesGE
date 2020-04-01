@@ -126,7 +126,6 @@ func _clear_food()->void:
 
 
 func _engage_warp_speed():
-	print(OS.is_debug_build())
 	round_duration = 3
 	$AnimationPlayer.playback_speed = 3
 	paper_fly_duration = .5
