@@ -9,9 +9,11 @@ var _has_timer_started := false
 const CARROT_GAME := [
 	{
 		"food": preload("res://src/Food/Carrot/CleanableCarrot.tscn"),
+		"label": "Wash the Carrots!",
 	},
 	{
 		"food": preload("res://src/Food/Carrot/PeelableCarrot.tscn"),
+		"label": "Peel the Carrots!",
 	}
 ]
 
@@ -33,6 +35,7 @@ func _ready():
 	
 	
 func _start_round():
+	$Interstitial.update_label(_game_config[_round]["label"])
 	$Interstitial.z_index = _completed + 1 # Force on top of food pile
 	$AnimationPlayer.play("InterstitialFlyBy")
 	
