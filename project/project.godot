@@ -60,6 +60,10 @@ config/name="Canning Heroes"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Soundtrack="*res://src/Util/Soundtrack.gd"
+
 [debug]
 
 gdscript/warnings/return_value_discarded=false

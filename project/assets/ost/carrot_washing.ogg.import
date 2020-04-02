@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/carrot_washing.ogg-df15598588f4e8c59298b2e8679abb85.oggstr"
+
+[deps]
+
+source_file="res://assets/ost/carrot_washing.ogg"
+dest_files=[ "res://.import/carrot_washing.ogg-df15598588f4e8c59298b2e8679abb85.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

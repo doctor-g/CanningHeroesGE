@@ -13,16 +13,21 @@ const CARROT_GAME := [
 	{
 		"food": preload("res://src/Food/Carrot/CleanableCarrot.tscn"),
 		"label": "Wash the Carrots!",
+		"song": preload("res://assets/ost/carrot_washing.ogg"),
 	},
 	{
 		"food": preload("res://src/Food/Carrot/PeelableCarrot.tscn"),
 		"label": "Peel the Carrots!",
+		"song": preload("res://assets/ost/carrot_peeling.ogg")
 	},
 	{
 		"food": preload("res://src/Food/Carrot/ChoppableCarrot.tscn"),
-		"label": "Cut the Carrots!"
+		"label": "Cut the Carrots!",
+		"song": preload("res://assets/ost/carrot_chopping.ogg")
 	},
 ]
+
+const END_SONG := preload("res://assets/ost/ending.ogg")
 
 onready var _workstations := []
 onready var _tween_pool : TweenPool = $TweenPool
@@ -52,6 +57,7 @@ func _on_interstitialflyby_finished()->void:
 		_add_food_to(workstation)
 	_timer.start(round_duration)
 	_has_timer_started = true
+	Soundtrack.play_song(_game_config[_round]["song"])
 	emit_signal("round_started", self)
 	
 	
@@ -89,6 +95,9 @@ func _on_food_processed(food:Food, workstation):
 	tween.start()
 	
 	# Add a new food
+	# TODO: There is a rare error where this fails because the round already
+	# advanced. The thing to do is probably do more careful management
+	# of state in this class.
 	_add_food_to(workstation)
 
 
@@ -111,6 +120,7 @@ func _on_Timer_timeout():
 		var tween : Tween = _tween_pool.create()
 		tween.interpolate_property(game_over_scene, "position", null, Vector2.ZERO, paper_fly_duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		tween.start()
+		Soundtrack.play_song(END_SONG)
 		
 	# Otherwise start the next round
 	else:
