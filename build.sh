@@ -11,6 +11,9 @@ set -x
 TARGET=index
 DIR=build/HTML5
 
+# Increment tbe build number
+bash increment_build.sh
+
 # Create the staging directory
 mkdir -p $DIR
 
