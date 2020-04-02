@@ -98,7 +98,9 @@ func _on_Timer_timeout():
 	
 	# If the game is over, set up and fly in the GameOver scene
 	if _round == _game_config.size():
-		var game_over_scene : Sprite = _GameOverScene.instance()
+		var game_over_scene : GameOver = _GameOverScene.instance()
+		game_over_scene.number_completed = _completed
+		game_over_scene.food_name = "carrots"
 		game_over_scene.z_index = _completed  # Force on top of food pile
 		add_child(game_over_scene)
 		game_over_scene.position = Vector2(0,-game_over_scene.texture.get_height())
