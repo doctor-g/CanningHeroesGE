@@ -4,6 +4,7 @@ var _chop_point2 : ChopPoint
 var ChopPointScene : PackedScene = preload("res://src/Food/ChopPoint.tscn")
 
 func _on_ChopPoint_chop():
+	$ChopSound.play()
 	$AnimationPlayer.play("Split1")
 
 func _spawn_second_chop_point()->void:
@@ -13,6 +14,7 @@ func _spawn_second_chop_point()->void:
 	
 	
 func _on_ChopPoint2_chop()->void:
+	$ChopSound.play()
 	$AnimationPlayer.play("Split2")
 
 

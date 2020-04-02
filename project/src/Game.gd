@@ -1,4 +1,7 @@
 extends Node
+class_name Game
+
+signal round_started(Game)
 
 export(int) var round_duration := 30
 export(float) var paper_fly_duration := 1.5
@@ -49,6 +52,7 @@ func _on_interstitialflyby_finished()->void:
 		_add_food_to(workstation)
 	_timer.start(round_duration)
 	_has_timer_started = true
+	emit_signal("round_started", self)
 	
 	
 func _process(_delta:float):

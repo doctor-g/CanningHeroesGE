@@ -18,5 +18,13 @@ func _set_food_name(value)->void:
 	food_name = value
 	_update_label_text()
 
+
 func _on_OkButton_pressed():
+	# If we leave right away, the sound gets cut off, so wait for it to finish.
+	$ButtonClickSound.play()
+	$ButtonClickSound.connect("finished", self, "_on_click_sound_finished", [], CONNECT_ONESHOT)
+	$Control/OkButton.disabled = true
+
+
+func _on_click_sound_finished()->void:
 	get_tree().change_scene("res://src/Game.tscn")

@@ -14,6 +14,7 @@ var _last_touch := Vector2()
 var _is_clean := false
 
 onready var dirt : Sprite = $Carrot/Dirt
+onready var _scrub_sound : AudioStreamPlayer2D = $ScrubSound
 
 func _process(delta:float):
 	if enabled and _is_scrubbing and not _is_clean:
@@ -26,6 +27,8 @@ func _process(delta:float):
 			emit_signal("processed")
 		else:
 			dirt.self_modulate = Color(prev.r, prev.g, prev.b, new_alpha)
+		if not _scrub_sound.playing:
+			_scrub_sound.play()
 		_is_scrubbing = false
 
 

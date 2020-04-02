@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Environment/Workstation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Game.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/UI/GameTimer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/MainMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/Interstitial.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sfx/ticking_alarm.wav" type="AudioStream" id=9]
+[ext_resource path="res://src/TickingAlarm.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "InterstitialFlyBy"
@@ -92,5 +94,13 @@ position = Vector2( 1920, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/InterstitialFlyBy = SubResource( 1 )
+
+[node name="TickingAlarm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+script = ExtResource( 10 )
+
+[node name="Timer" type="Timer" parent="TickingAlarm"]
+[connection signal="round_started" from="." to="TickingAlarm" method="_on_Game_round_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="game_selected" from="MainMenu" to="." method="_on_MainMenu_game_selected"]
+[connection signal="timeout" from="TickingAlarm/Timer" to="TickingAlarm" method="_on_Timer_timeout"]

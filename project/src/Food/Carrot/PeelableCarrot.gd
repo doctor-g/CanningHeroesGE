@@ -38,6 +38,7 @@ func _peel():
 	_state = State.DEFAULT
 	_sprite.texture = _IMAGES[_next_image_index]
 	_next_image_index += 1
+	$PeelingSound.play()
 	if _next_image_index == _IMAGES.size():
 		emit_signal("processed")
 		_remove_interaction_areas()

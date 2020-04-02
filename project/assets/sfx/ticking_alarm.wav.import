@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ticking_alarm.wav-4f18c4126e1cbed4934170dfe114f431.sample"
+
+[deps]
+
+source_file="res://assets/sfx/ticking_alarm.wav"
+dest_files=[ "res://.import/ticking_alarm.wav-4f18c4126e1cbed4934170dfe114f431.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

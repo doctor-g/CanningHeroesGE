@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/food/carrot_clean.png" type="Texture" id=1]
 [ext_resource path="res://src/Food/Carrot/PeelableCarrot.gd" type="Script" id=2]
+[ext_resource path="res://assets/sfx/peeling.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 70.7697
@@ -25,4 +26,7 @@ shape = SubResource( 1 )
 position = Vector2( 88.7822, 203.34 )
 rotation = 1.27608
 shape = SubResource( 1 )
+
+[node name="PeelingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 [connection signal="input_event" from="Sprite/InteractionArea" to="." method="_on_InteractionArea_input_event"]
