@@ -15,24 +15,37 @@ export(float) var paper_fly_duration := 1.5
 
 var _state = GameState.MENU
 
-const CARROT_GAME := [
+const BEAN_GAME := {
+	"name": "Beans",
+	"data": [
 		{
-		"food": preload("res://src/Food/Carrot/ChoppableCarrot.tscn"),
-		"label": "Cut the Carrots!",
-		"song": preload("res://assets/ost/carrot_chopping.ogg")
-	},
-	{
-		"food": preload("res://src/Food/Carrot/CleanableCarrot.tscn"),
-		"label": "Wash the Carrots!",
-		"song": preload("res://assets/ost/carrot_washing.ogg"),
-	},
-	{
-		"food": preload("res://src/Food/Carrot/PeelableCarrot.tscn"),
-		"label": "Peel the Carrots!",
-		"song": preload("res://assets/ost/carrot_peeling.ogg")
-	},
+			"food": preload("res://src/Food/Bean/GreenBean.tscn"),
+			"label": "Snap the Beans!",
+			"song": preload("res://assets/ost/beans.ogg"),
+		}
+	]
+}
 
-]
+const CARROT_GAME := {
+	"name": "Carrots",
+	"data": [
+		{
+			"food": preload("res://src/Food/Carrot/CleanableCarrot.tscn"),
+			"label": "Wash the Carrots!",
+			"song": preload("res://assets/ost/carrot_washing.ogg"),
+		},
+		{
+			"food": preload("res://src/Food/Carrot/PeelableCarrot.tscn"),
+			"label": "Peel the Carrots!",
+			"song": preload("res://assets/ost/carrot_peeling.ogg")
+		},
+		{
+			"food": preload("res://src/Food/Carrot/ChoppableCarrot.tscn"),
+			"label": "Cut the Carrots!",
+			"song": preload("res://assets/ost/carrot_chopping.ogg")
+		},
+	]
+}
 
 const END_SONG := preload("res://assets/ost/ending.ogg")
 
@@ -41,13 +54,17 @@ onready var _tween_pool : TweenPool = $TweenPool
 onready var _tray : Tray = $Tray
 onready var _timer : Timer = $Timer
 onready var _ui_timer : GameTimer = $Interface/GameTimer
-
-onready var _game_config : Array = CARROT_GAME
-onready var _round : int = 0
 onready var _GameOverScene := preload("res://src/UI/GameOver.tscn")
+
+# The selected game
+var _game_config : Dictionary
+
+# The round of the game
+var _round : int = 0
 
 # Number of fruits completed
 var _completed := 0
+
 
 func _ready():
 	_workstations = $Workstations.get_children()
@@ -55,7 +72,7 @@ func _ready():
 	
 func _start_round():
 	_state = GameState.PREPARE
-	$Interstitial.update_label(_game_config[_round]["label"])
+	$Interstitial.update_label(_get_this_round_data()["label"])
 	$Interstitial.z_index = _completed + 1 # Force on top of food pile
 	$AnimationPlayer.play("InterstitialFlyBy")
 	
@@ -65,9 +82,13 @@ func _on_interstitialflyby_finished()->void:
 	for workstation in _workstations:
 		_add_food_to(workstation)
 	_timer.start(round_duration)
-	Soundtrack.play_song(_game_config[_round]["song"])
+	Soundtrack.play_song(_get_this_round_data()["song"])
 	emit_signal("round_started", self)
-	
+
+
+func _get_this_round_data() -> Dictionary:
+	return _game_config["data"][_round]
+
 	
 func _process(_delta:float):
 	if _state==GameState.PLAYING:
@@ -91,7 +112,7 @@ func _add_food_to(workstation:Node2D):
 		var tween = _tween_pool.create()
 		var source = workstation.spawn_point.get_global_transform().origin
 		var destination = workstation.get_global_transform().origin
-		var food = _game_config[_round]["food"].instance()
+		var food = _get_this_round_data()["food"].instance()
 		food.position = source
 		food.rotation_degrees = rand_range(1,360)
 		$Food.add_child(food)
@@ -127,11 +148,11 @@ func _on_Timer_timeout():
 	_round += 1
 	
 	# If the game is over, set up and fly in the GameOver scene
-	if _round == _game_config.size():
+	if _round == _game_config["data"].size():
 		_state = GameState.DONE
 		var game_over_scene : GameOver = _GameOverScene.instance()
 		game_over_scene.number_completed = _completed
-		game_over_scene.food_name = "carrots"
+		game_over_scene.food_name = _game_config["name"]
 		game_over_scene.z_index = _completed  # Force on top of food pile
 		add_child(game_over_scene)
 		game_over_scene.position = Vector2(0,-game_over_scene.texture.get_height())
@@ -148,10 +169,15 @@ func _on_Timer_timeout():
 func _on_MainMenu_game_selected(selection):
 	match selection:
 		"carrot":
-			var tween : Tween = _tween_pool.create()
-			tween.interpolate_property($MainMenu, "position", null, Vector2(0,-$Table.texture.get_height()), paper_fly_duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-			tween.start()
-			_start_round()
+			_game_config = CARROT_GAME
+		"bean":
+			_game_config = BEAN_GAME
+		_:
+			print("UNEXPECTED GAME SELECTION: %s" % selection)
+	var tween : Tween = _tween_pool.create()
+	tween.interpolate_property($MainMenu, "position", null, Vector2(0,-$Table.texture.get_height()), paper_fly_duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
+	_start_round()
 
 
 # Remove all the food from the board.

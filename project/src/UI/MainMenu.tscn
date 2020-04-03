@@ -56,21 +56,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarrotButton" type="Button" parent="Interface"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -175.0
-margin_top = -53.5
-margin_right = 175.0
-margin_bottom = 53.5
-theme = ExtResource( 2 )
-text = "CARROT"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TextureRect" type="ColorRect" parent="Interface"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -101,7 +86,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BeanButton" type="Button" parent="Interface/HBoxContainer"]
+margin_right = 238.0
+margin_bottom = 107.0
+theme = ExtResource( 2 )
+text = "BEAN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarrotButton" type="Button" parent="Interface/HBoxContainer"]
+margin_left = 288.0
+margin_right = 638.0
+margin_bottom = 107.0
+theme = ExtResource( 2 )
+text = "CARROT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ButtonClickSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-[connection signal="pressed" from="Interface/CarrotButton" to="." method="_on_CarrotButton_pressed"]
 [connection signal="pressed" from="Interface/TextureRect/FullscreenToggle" to="." method="_on_FullscreenToggle_pressed"]
+[connection signal="pressed" from="Interface/HBoxContainer/BeanButton" to="." method="_on_BeanButton_pressed"]
+[connection signal="pressed" from="Interface/HBoxContainer/CarrotButton" to="." method="_on_CarrotButton_pressed"]
