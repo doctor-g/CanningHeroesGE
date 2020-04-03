@@ -26,6 +26,22 @@ const BEAN_GAME := {
 	]
 }
 
+const TOMATO_GAME := {
+	"name": "Tomatoes",
+	"data": [
+		{
+			"food": preload("res://src/Food/Tomato/PeelableTomato.tscn"),
+			"label": "Peel the Tomatoes!",
+			"song": preload("res://assets/ost/tomato_peeling.ogg")
+		},
+		{
+			"food": preload("res://src/Food/Tomato/DiceableTomato.tscn"),
+			"label": "Dice the Tomatoes!",
+			"song": preload("res://assets/ost/tomato_chopping.ogg")
+		},
+	]
+}
+
 const CARROT_GAME := {
 	"name": "Carrots",
 	"data": [
@@ -172,6 +188,8 @@ func _on_MainMenu_game_selected(selection):
 			_game_config = CARROT_GAME
 		"bean":
 			_game_config = BEAN_GAME
+		"tomato":
+			_game_config = TOMATO_GAME
 		_:
 			print("UNEXPECTED GAME SELECTION: %s" % selection)
 	var tween : Tween = _tween_pool.create()

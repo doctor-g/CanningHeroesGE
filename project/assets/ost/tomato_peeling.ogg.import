@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tomato_peeling.ogg-f359d755618c68576a2d1d3b00b4e954.oggstr"
+
+[deps]
+
+source_file="res://assets/ost/tomato_peeling.ogg"
+dest_files=[ "res://.import/tomato_peeling.ogg-f359d755618c68576a2d1d3b00b4e954.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

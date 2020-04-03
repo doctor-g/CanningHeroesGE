@@ -1,0 +1,219 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/Food/Tomato/DiceableTomato.gd" type="Script" id=1]
+[ext_resource path="res://assets/food/tomato_topleft.png" type="Texture" id=2]
+[ext_resource path="res://assets/food/tomato_bottomright.png" type="Texture" id=3]
+[ext_resource path="res://assets/food/tomato_bottomleft.png" type="Texture" id=4]
+[ext_resource path="res://assets/food/tomato_topright.png" type="Texture" id=5]
+[ext_resource path="res://assets/sfx/tomato_cut.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 41.9984, 72.0002 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "LeftChop"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Left/BottomLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Left/TopLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_side_animation_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "MiddleChop"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -20, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 20, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_enable_side_chop_areas"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "RightChop"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Right/BottomRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right/TopRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_side_animation_complete"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 56.1606, 31.5907 )
+
+[node name="Tomato" type="Node2D"]
+position = Vector2( 266.999, 177.999 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="Node2D" parent="."]
+
+[node name="BottomLeft" type="Node2D" parent="Left"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Left/BottomLeft"]
+position = Vector2( -51.197, 45.467 )
+texture = ExtResource( 4 )
+
+[node name="TopLeft" type="Node2D" parent="Left"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Left/TopLeft"]
+position = Vector2( -46.855, -23.945 )
+texture = ExtResource( 2 )
+
+[node name="Right" type="Node2D" parent="."]
+
+[node name="BottomRight" type="Node2D" parent="Right"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Right/BottomRight"]
+position = Vector2( 53.329, 41.007 )
+texture = ExtResource( 3 )
+
+[node name="TopRight" type="Node2D" parent="Right"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Right/TopRight"]
+position = Vector2( 51.933, -24.694 )
+texture = ExtResource( 5 )
+
+[node name="MiddleChopArea" type="Area2D" parent="."]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleChopArea"]
+position = Vector2( 0, 7.99997 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/LeftChop = SubResource( 4 )
+anims/MiddleChop = SubResource( 2 )
+anims/RightChop = SubResource( 5 )
+
+[node name="DiceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="LeftChopArea" type="Area2D" parent="."]
+position = Vector2( -66.4702, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftChopArea"]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="RightChopArea" type="Area2D" parent="."]
+position = Vector2( 71.7271, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightChopArea"]
+shape = SubResource( 3 )
+disabled = true
+[connection signal="input_event" from="MiddleChopArea" to="." method="_on_MiddleChopArea_input_event"]
+[connection signal="input_event" from="LeftChopArea" to="." method="_on_LeftChopArea_input_event"]
+[connection signal="input_event" from="RightChopArea" to="." method="_on_RightChopArea_input_event"]

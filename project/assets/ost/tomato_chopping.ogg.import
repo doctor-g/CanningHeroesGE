@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tomato_chopping.ogg-7922c1a598bcc3e8173f6ac6f39818d7.oggstr"
+
+[deps]
+
+source_file="res://assets/ost/tomato_chopping.ogg"
+dest_files=[ "res://.import/tomato_chopping.ogg-7922c1a598bcc3e8173f6ac6f39818d7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

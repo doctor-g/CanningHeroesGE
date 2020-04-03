@@ -10,12 +10,20 @@ func _ready():
 	
 
 func _on_CarrotButton_pressed():
-	_play_button_click_sound()
-	emit_signal("game_selected", "carrot")
+	_report("carrot")
 	
-func _on_BeanButton_pressed():
+
+func _report(name:String)->void:
 	_play_button_click_sound()
-	emit_signal("game_selected", "bean")
+	emit_signal("game_selected", name)
+	
+
+func _on_BeanButton_pressed():
+	_report("bean")
+	
+
+func _on_TomatoButton_pressed():
+	_report("tomato")
 
 
 func _on_FullscreenToggle_pressed():
@@ -25,6 +33,5 @@ func _on_FullscreenToggle_pressed():
 
 func _play_button_click_sound()->void:
 	$ButtonClickSound.play()
-
 
 

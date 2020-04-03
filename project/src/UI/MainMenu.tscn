@@ -107,9 +107,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarrotButton" type="Button" parent="Interface/HBoxContainer"]
+[node name="TomatoButton" type="Button" parent="Interface/HBoxContainer"]
 margin_left = 288.0
-margin_right = 638.0
+margin_right = 653.0
+margin_bottom = 107.0
+theme = ExtResource( 2 )
+text = "TOMATO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarrotButton" type="Button" parent="Interface/HBoxContainer"]
+margin_left = 703.0
+margin_right = 1053.0
 margin_bottom = 107.0
 theme = ExtResource( 2 )
 text = "CARROT"
@@ -121,4 +131,5 @@ __meta__ = {
 stream = ExtResource( 7 )
 [connection signal="pressed" from="Interface/TextureRect/FullscreenToggle" to="." method="_on_FullscreenToggle_pressed"]
 [connection signal="pressed" from="Interface/HBoxContainer/BeanButton" to="." method="_on_BeanButton_pressed"]
+[connection signal="pressed" from="Interface/HBoxContainer/TomatoButton" to="." method="_on_TomatoButton_pressed"]
 [connection signal="pressed" from="Interface/HBoxContainer/CarrotButton" to="." method="_on_CarrotButton_pressed"]

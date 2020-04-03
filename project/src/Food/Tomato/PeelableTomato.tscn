@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Food/Tomato/PeelableTomato.gd" type="Script" id=1]
+[ext_resource path="res://assets/food/tomato.png" type="Texture" id=2]
+[ext_resource path="res://assets/sfx/peeling.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 134.233, 33.0676 )
+
+[node name="Tomato" type="Node2D"]
+position = Vector2( 219.764, 207.487 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="TopArea" type="Area2D" parent="."]
+position = Vector2( -1.22774, -62.6144 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
+shape = SubResource( 1 )
+
+[node name="BottomArea" type="Area2D" parent="."]
+position = Vector2( 2.45547, 67.5253 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea"]
+shape = SubResource( 1 )
+
+[node name="PeelSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -3.68323, 6.13867 )
+stream = ExtResource( 3 )
+[connection signal="input_event" from="TopArea" to="." method="_on_TopArea_input_event"]
+[connection signal="input_event" from="BottomArea" to="." method="_on_BottomArea_input_event"]
