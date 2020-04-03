@@ -162,7 +162,10 @@ func _clear_food()->void:
 		food.queue_free()
 
 
+# Speed everything up
 func _engage_warp_speed():
-	round_duration = 3
-	$AnimationPlayer.playback_speed = 3
-	paper_fly_duration = .5
+	# This is only allowed if we are in the editor, not when deployed.
+	if not OS.has_feature("standalone"):
+		round_duration = 3
+		$AnimationPlayer.playback_speed = 3
+		paper_fly_duration = .5
