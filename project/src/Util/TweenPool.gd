@@ -14,14 +14,14 @@ func _make_tween_in_pool() -> Tween:
 	var tween : Tween = Tween.new()
 	add_child(tween)
 	_pool.append(tween)
+	# warning-ignore:return_value_discarded
+	tween.connect("tween_all_completed", self, "_on_tween_all_completed", [tween])
 	return tween
 	
 func create() -> Tween:
 	var tween : Tween = _pool.pop_back()
 	if not tween:
 		tween = _make_tween_in_pool()
-	# warning-ignore:return_value_discarded
-	tween.connect("tween_all_completed", self, "_on_tween_all_completed", [tween], CONNECT_ONESHOT)
 	return tween
 	
 func _on_tween_all_completed(tween:Tween)->void:

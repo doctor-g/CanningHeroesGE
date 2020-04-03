@@ -3,13 +3,24 @@ class_name Game
 
 signal round_started(Game)
 
+enum GameState {
+	MENU,
+	PREPARE,
+	PLAYING,
+	DONE
+}
+
 export(int) var round_duration := 30
 export(float) var paper_fly_duration := 1.5
 
-# This is an awkward workaround the lack of a timer.is_active method
-var _has_timer_started := false
+var _state = GameState.MENU
 
 const CARROT_GAME := [
+		{
+		"food": preload("res://src/Food/Carrot/ChoppableCarrot.tscn"),
+		"label": "Cut the Carrots!",
+		"song": preload("res://assets/ost/carrot_chopping.ogg")
+	},
 	{
 		"food": preload("res://src/Food/Carrot/CleanableCarrot.tscn"),
 		"label": "Wash the Carrots!",
@@ -20,11 +31,7 @@ const CARROT_GAME := [
 		"label": "Peel the Carrots!",
 		"song": preload("res://assets/ost/carrot_peeling.ogg")
 	},
-	{
-		"food": preload("res://src/Food/Carrot/ChoppableCarrot.tscn"),
-		"label": "Cut the Carrots!",
-		"song": preload("res://assets/ost/carrot_chopping.ogg")
-	},
+
 ]
 
 const END_SONG := preload("res://assets/ost/ending.ogg")
@@ -47,22 +54,26 @@ func _ready():
 	
 	
 func _start_round():
+	_state = GameState.PREPARE
 	$Interstitial.update_label(_game_config[_round]["label"])
 	$Interstitial.z_index = _completed + 1 # Force on top of food pile
 	$AnimationPlayer.play("InterstitialFlyBy")
 	
 	
 func _on_interstitialflyby_finished()->void:
+	_state = GameState.PLAYING
 	for workstation in _workstations:
 		_add_food_to(workstation)
 	_timer.start(round_duration)
-	_has_timer_started = true
 	Soundtrack.play_song(_game_config[_round]["song"])
 	emit_signal("round_started", self)
 	
 	
 func _process(_delta:float):
-	_ui_timer.update_time_remaining(_timer.time_left if _has_timer_started else float(round_duration))
+	if _state==GameState.PLAYING:
+		_ui_timer.update_time_remaining(_timer.time_left)
+	else:
+		_ui_timer.update_time_remaining(float(round_duration))
 
 
 func _input(event):
@@ -71,16 +82,22 @@ func _input(event):
 
 	
 func _add_food_to(workstation:Node2D):
-	var tween = _tween_pool.create()
-	var source = workstation.spawn_point.get_global_transform().origin
-	var destination = workstation.get_global_transform().origin
-	var food = _game_config[_round]["food"].instance()
-	food.position = source
-	food.rotation_degrees = rand_range(1,360)
-	$Food.add_child(food)
-	tween.interpolate_property(food, "position", source, destination, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	tween.start()
-	food.connect("processed", self, "_on_food_processed", [food, workstation])
+	# I noticed a strange, hard-to-trace bug where this can be called
+	# after a round is over. I think it's related to the timing of
+	# chopping: the chop animation finishes, _then_ the thing is marked
+	# as done. So, we need to check to make sure we're still playing
+	# before we add food to a workstation.
+	if _state==GameState.PLAYING:
+		var tween = _tween_pool.create()
+		var source = workstation.spawn_point.get_global_transform().origin
+		var destination = workstation.get_global_transform().origin
+		var food = _game_config[_round]["food"].instance()
+		food.position = source
+		food.rotation_degrees = rand_range(1,360)
+		$Food.add_child(food)
+		tween.interpolate_property(food, "position", source, destination, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.start()
+		food.connect("processed", self, "_on_food_processed", [food, workstation])
 
 
 func _on_food_processed(food:Food, workstation):
@@ -111,6 +128,7 @@ func _on_Timer_timeout():
 	
 	# If the game is over, set up and fly in the GameOver scene
 	if _round == _game_config.size():
+		_state = GameState.DONE
 		var game_over_scene : GameOver = _GameOverScene.instance()
 		game_over_scene.number_completed = _completed
 		game_over_scene.food_name = "carrots"
@@ -142,7 +160,6 @@ func _clear_food()->void:
 	for food in $Food.get_children():
 		$Food.remove_child(food)
 		food.queue_free()
-	_has_timer_started = false
 
 
 func _engage_warp_speed():
