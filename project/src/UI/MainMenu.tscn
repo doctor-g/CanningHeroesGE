@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/ui/paper.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/canning_heroes_theme.tres" type="Theme" id=2]
@@ -10,10 +10,60 @@
 [ext_resource path="res://assets/ui/simple_font.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/props/credits_jar.png" type="Texture" id=9]
 [ext_resource path="res://assets/sfx/jar_clink.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/ui/tomato_icon.png" type="Texture" id=11]
+[ext_resource path="res://src/UI/MinigameButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/ui/carrot_icon.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
 font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "IconPulse"
+length = 4.0
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("BeanButton")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pulse"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("TomatoButton")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pulse"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("CarrotButton")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pulse"
+} ]
+}
 
 [node name="MainMenu" type="Sprite"]
 texture = ExtResource( 1 )
@@ -23,6 +73,7 @@ script = ExtResource( 4 )
 [node name="Interface" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -88,53 +139,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Interface"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-custom_constants/separation = 50
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="BeanButton" type="Button" parent="Interface/HBoxContainer" groups=[
-"buttons",
-]]
-margin_right = 238.0
-margin_bottom = 107.0
-theme = ExtResource( 2 )
-text = "BEAN"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TomatoButton" type="Button" parent="Interface/HBoxContainer" groups=[
-"buttons",
-]]
-margin_left = 288.0
-margin_right = 653.0
-margin_bottom = 107.0
-theme = ExtResource( 2 )
-text = "TOMATO"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CarrotButton" type="Button" parent="Interface/HBoxContainer" groups=[
-"buttons",
-]]
-margin_left = 703.0
-margin_right = 1053.0
-margin_bottom = 107.0
-theme = ExtResource( 2 )
-text = "CARROT"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AboutButton" type="Button" parent="Interface" groups=[
 "buttons",
 ]]
@@ -157,8 +161,26 @@ stream = ExtResource( 7 )
 
 [node name="JarClinkSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
+
+[node name="BeanButton" parent="." instance=ExtResource( 12 )]
+position = Vector2( 555.813, 540 )
+label = "Snap!"
+
+[node name="TomatoButton" parent="." instance=ExtResource( 12 )]
+position = Vector2( 955.217, 540 )
+image = ExtResource( 11 )
+label = "Peel and Chop!"
+
+[node name="CarrotButton" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1349.84, 540 )
+image = ExtResource( 13 )
+label = "Peel, Wash, Chop!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IconPulse"
+anims/IconPulse = SubResource( 2 )
 [connection signal="pressed" from="Interface/TextureRect/FullscreenToggle" to="." method="_on_FullscreenToggle_pressed"]
-[connection signal="pressed" from="Interface/HBoxContainer/BeanButton" to="." method="_on_BeanButton_pressed"]
-[connection signal="pressed" from="Interface/HBoxContainer/TomatoButton" to="." method="_on_TomatoButton_pressed"]
-[connection signal="pressed" from="Interface/HBoxContainer/CarrotButton" to="." method="_on_CarrotButton_pressed"]
 [connection signal="pressed" from="Interface/AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="BeanButton" to="." method="_on_BeanButton_pressed"]
+[connection signal="pressed" from="TomatoButton" to="." method="_on_TomatoButton_pressed"]
+[connection signal="pressed" from="CarrotButton" to="." method="_on_CarrotButton_pressed"]
