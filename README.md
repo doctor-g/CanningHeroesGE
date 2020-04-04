@@ -28,12 +28,12 @@ to GitHub Pages.
 
 This project uses the same assets as [the
 original](https://github.com/HappyAccidentStudio/CanningHeroes/). 
-[Slackey
-font](https://fonts.google.com/specimen/Slackey) is used under [Apache License
-2.0](http://www.apache.org/licenses/LICENSE-2.0), and [the button click
-sound](https://www.kenney.nl/assets/interface-sounds) is used under
+[Slackey](https://fonts.google.com/specimen/Slackey) 
+and
+[OpenSans](https://fonts.google.com/specimen/Open+Sans)
+are used under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). 
+[The button click sound](https://www.kenney.nl/assets/interface-sounds) is used under
 [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/).
-The fullscreen feature icons were designed by Jessica Gestwicki
 
 ## License
 

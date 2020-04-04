@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jar_clink.wav-b101149adb34fac68393b4f44a377ea2.sample"
+
+[deps]
+
+source_file="res://assets/sfx/jar_clink.wav"
+dest_files=[ "res://.import/jar_clink.wav-b101149adb34fac68393b4f44a377ea2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

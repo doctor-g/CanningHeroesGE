@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Environment/Workstation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Game.gd" type="Script" id=2]
@@ -10,6 +10,23 @@
 [ext_resource path="res://src/UI/Interstitial.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sfx/ticking_alarm.wav" type="AudioStream" id=9]
 [ext_resource path="res://src/TickingAlarm.gd" type="Script" id=10]
+[ext_resource path="res://src/UI/Credits.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Animation" id=2]
+resource_name = "FlyInCredits"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Credits:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( -1920, 0 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "InterstitialFlyBy"
@@ -93,6 +110,7 @@ one_shot = true
 position = Vector2( -1920, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FlyInCredits = SubResource( 2 )
 anims/InterstitialFlyBy = SubResource( 1 )
 
 [node name="TickingAlarm" type="AudioStreamPlayer2D" parent="."]
@@ -100,7 +118,12 @@ stream = ExtResource( 9 )
 script = ExtResource( 10 )
 
 [node name="Timer" type="Timer" parent="TickingAlarm"]
+
+[node name="Credits" parent="." instance=ExtResource( 11 )]
+position = Vector2( -1920, 0 )
 [connection signal="round_started" from="." to="TickingAlarm" method="_on_Game_round_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="about_selected" from="MainMenu" to="." method="_on_MainMenu_about_selected"]
 [connection signal="game_selected" from="MainMenu" to="." method="_on_MainMenu_game_selected"]
 [connection signal="timeout" from="TickingAlarm/Timer" to="TickingAlarm" method="_on_Timer_timeout"]
+[connection signal="dismissed" from="Credits" to="." method="_on_Credits_dismissed"]

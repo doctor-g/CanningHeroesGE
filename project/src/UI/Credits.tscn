@@ -1,0 +1,321 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/credits/cookbook.png" type="Texture" id=1]
+[ext_resource path="res://assets/credits/happy_accident.png" type="Texture" id=2]
+[ext_resource path="res://assets/credits/bsu.png" type="Texture" id=3]
+[ext_resource path="res://assets/credits/minnetrista.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/OpenSans-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/ui/simple_font_bold.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/credits/back.png" type="Texture" id=7]
+[ext_resource path="res://src/UI/Credits.gd" type="Script" id=8]
+[ext_resource path="res://assets/sfx/click.wav" type="AudioStream" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://assets/ui/OpenSans-Italic.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = SubResource( 4 )
+
+[node name="Credits" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Cookbook" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Interface" type="Control" parent="Cookbook"]
+anchor_left = 0.0912917
+anchor_top = 0.105704
+anchor_right = 0.909271
+anchor_bottom = 0.900111
+margin_left = 0.719986
+margin_top = -0.159996
+margin_right = -0.800049
+margin_bottom = -0.120056
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LeftPage" type="Control" parent="Cookbook/Interface"]
+anchor_right = 0.455
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 7.0
+margin_right = -5.89502
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Cookbook/Interface/LeftPage"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -232.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Cookbook/Interface/LeftPage/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 232.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+texture = ExtResource( 4 )
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Cookbook/Interface/LeftPage/HBoxContainer"]
+margin_left = 235.0
+margin_right = 464.0
+margin_bottom = 232.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+texture = ExtResource( 2 )
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Cookbook/Interface/LeftPage/HBoxContainer"]
+margin_left = 470.0
+margin_right = 670.0
+margin_bottom = 232.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+texture = ExtResource( 3 )
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cookbook/Interface/LeftPage"]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.05
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutLabel" type="Label" parent="Cookbook/Interface/LeftPage/VBoxContainer"]
+margin_right = 671.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.960784, 0.0235294, 0.0235294, 1 )
+text = "About Canning Heroes"
+align = 1
+
+[node name="AboutText" type="Label" parent="Cookbook/Interface/LeftPage/VBoxContainer"]
+margin_top = 49.0
+margin_right = 671.0
+margin_bottom = 564.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This game was created through an immersive learning collaboration between Ball State University and Minnetrista. Happy Accident Studio was a multidisciplinary undergraduate student team created specifically for this project.
+
+The original version was created for installation on a multitouch surface at Minnetrista. This special edition was rebuilt from the original assets so that you can play the game anywhere you like.
+
+Happy Accident Studio would like to give special thanks to the Computer Science Department and the Office of Immersive Learning at Ball State University."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightPage" type="Control" parent="Cookbook/Interface"]
+anchor_left = 0.544296
+anchor_top = 0.0011655
+anchor_right = 0.999933
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 7.0
+margin_right = -5.89502
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cookbook/Interface/RightPage"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 40
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HappyAccidentCredits" type="VBoxContainer" parent="Cookbook/Interface/RightPage/VBoxContainer"]
+margin_top = 35.0
+margin_right = 702.0
+margin_bottom = 479.0
+
+[node name="TeamLabel" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits"]
+margin_right = 702.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.960784, 0.0235294, 0.0235294, 1 )
+text = "Happy Accident Studio"
+align = 1
+
+[node name="StudentTeam" type="HBoxContainer" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits"]
+margin_top = 49.0
+margin_right = 702.0
+margin_bottom = 298.0
+custom_constants/separation = 30
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftColumn" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits/StudentTeam"]
+margin_left = 98.0
+margin_right = 349.0
+margin_bottom = 249.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Jawad Al Mamoon
+Lauren Binnewies
+Chris Bucker
+Gabrielle Hogan
+Nick Murphy
+Lindsey Murphy"
+align = 1
+
+[node name="RightColumn" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits/StudentTeam"]
+margin_left = 379.0
+margin_right = 603.0
+margin_bottom = 249.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Lindsey Murphy
+Eli Sokeland
+Tanner Stanley
+Austin Tinkel
+Hunter Wallace
+Julie Xiao"
+align = 1
+
+[node name="FacultyMentorTitle" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits"]
+margin_top = 302.0
+margin_right = 702.0
+margin_bottom = 328.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Faculty mentor"
+align = 1
+
+[node name="FacultyMentorID" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits"]
+margin_top = 332.0
+margin_right = 702.0
+margin_bottom = 371.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Paul Gestwicki"
+align = 1
+
+[node name="Partner" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits"]
+margin_top = 375.0
+margin_right = 702.0
+margin_bottom = 401.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Design Consultant"
+align = 1
+
+[node name="PartnerName" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/HappyAccidentCredits"]
+margin_top = 405.0
+margin_right = 702.0
+margin_bottom = 444.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "George Buss"
+align = 1
+
+[node name="SpecialEdition" type="VBoxContainer" parent="Cookbook/Interface/RightPage/VBoxContainer"]
+margin_top = 519.0
+margin_right = 702.0
+margin_bottom = 710.0
+
+[node name="SpecialEditionCredits" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/SpecialEdition"]
+margin_right = 702.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.960784, 0.0235294, 0.0235294, 1 )
+text = "Special Edition Credits"
+align = 1
+
+[node name="MyCredits" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/SpecialEdition"]
+margin_top = 49.0
+margin_right = 702.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Design & Development"
+align = 1
+
+[node name="MyLabel" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/SpecialEdition"]
+margin_top = 79.0
+margin_right = 702.0
+margin_bottom = 118.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Paul Gestwicki"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JessCredits" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/SpecialEdition"]
+margin_top = 122.0
+margin_right = 702.0
+margin_bottom = 148.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Additional Graphic Design"
+align = 1
+
+[node name="JessLabel" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer/SpecialEdition"]
+margin_top = 152.0
+margin_right = 702.0
+margin_bottom = 191.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0745098, 0.0666667, 0.0666667, 1 )
+text = "Jessica Gestwicki"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Copyright" type="Label" parent="Cookbook/Interface/RightPage/VBoxContainer"]
+margin_top = 750.0
+margin_right = 702.0
+margin_bottom = 805.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.0862745, 0.0705882, 0.0705882, 1 )
+text = "Original version ©2019 Happy Accident Studio. Special edition ©2020 Paul Gestwicki. This software is licensed under GNU GPL V3: github.com/doctor-g/CanningHeroesGE"
+align = 1
+autowrap = true
+
+[node name="BackButton" type="Button" parent="Cookbook/Interface"]
+margin_right = 12.0
+margin_bottom = 20.0
+icon = ExtResource( 7 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+[connection signal="pressed" from="Cookbook/Interface/BackButton" to="." method="_on_BackButton_pressed"]

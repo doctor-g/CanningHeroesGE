@@ -213,3 +213,14 @@ func _engage_warp_speed():
 		round_duration = 3
 		$AnimationPlayer.playback_speed = 3
 		paper_fly_duration = .5
+
+
+func _on_MainMenu_about_selected():
+	# TODO: Disable other buttons
+	$AnimationPlayer.play("FlyInCredits")
+	
+
+func _on_Credits_dismissed():
+	# TODO: Disable other buttons
+	$AnimationPlayer.play_backwards("FlyInCredits")
+	$MainMenu.enable_buttons()
