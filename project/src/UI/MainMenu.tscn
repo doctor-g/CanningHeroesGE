@@ -16,6 +16,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
+extra_spacing_bottom = -80
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=2]
@@ -78,31 +79,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Interface"]
+[node name="CanningHeroesTitle" type="Label" parent="Interface"]
 anchor_right = 1.0
 margin_top = 101.0
 margin_bottom = 14.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.603922, 0.454902, 0.454902, 1 )
-custom_colors/font_color_shadow = Color( 0.117647, 0.0901961, 0.0901961, 1 )
-custom_constants/shadow_offset_x = 4
-text = "Canning Heroes"
+custom_colors/font_color = Color( 0.937255, 0.458824, 0.133333, 1 )
+custom_colors/font_color_shadow = Color( 0.486275, 0.0745098, 0.0862745, 1 )
+custom_constants/shadow_offset_x = 5
+custom_constants/shadow_offset_y = 5
+text = "CANNING
+HEROES"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Interface"]
+[node name="SpecialEditionTitle" type="Label" parent="Interface"]
 anchor_right = 1.0
 margin_left = 11.0
-margin_top = 265.401
+margin_top = 338.888
 margin_right = 11.0
-margin_bottom = 366.401
+margin_bottom = 439.888
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 0.603922, 0.454902, 0.454902, 1 )
-custom_colors/font_color_shadow = Color( 0.117647, 0.0901961, 0.0901961, 1 )
-custom_constants/shadow_offset_x = 4
+custom_colors/font_color = Color( 0.937255, 0.458824, 0.133333, 1 )
+custom_colors/font_color_shadow = Color( 0.486275, 0.0745098, 0.0862745, 1 )
+custom_constants/shadow_offset_x = 5
+custom_constants/shadow_offset_y = 5
 text = "Special Edition"
 align = 1
 __meta__ = {
@@ -163,16 +167,16 @@ stream = ExtResource( 7 )
 stream = ExtResource( 10 )
 
 [node name="BeanButton" parent="." instance=ExtResource( 12 )]
-position = Vector2( 555.813, 540 )
+position = Vector2( 554.143, 603.466 )
 label = "Snap!"
 
 [node name="TomatoButton" parent="." instance=ExtResource( 12 )]
-position = Vector2( 955.217, 540 )
+position = Vector2( 953.547, 603.466 )
 image = ExtResource( 11 )
 label = "Peel and Chop!"
 
 [node name="CarrotButton" parent="." instance=ExtResource( 12 )]
-position = Vector2( 1349.84, 540 )
+position = Vector2( 1348.17, 603.466 )
 image = ExtResource( 13 )
 label = "Peel, Wash, Chop!"
 
