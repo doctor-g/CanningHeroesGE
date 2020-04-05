@@ -12,7 +12,7 @@ func _set_number_completed(value)->void:
 	_update_label_text()
 	
 func _update_label_text()->void:
-	$Control/Label.text = "You canned %d %s!" % [number_completed, food_name]
+	$Control/ScoreLabel.text = "You canned %d %s!" % [number_completed, food_name]
 	
 func _set_food_name(value)->void:
 	food_name = value
