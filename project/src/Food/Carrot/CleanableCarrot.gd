@@ -24,7 +24,7 @@ func _process(delta:float):
 			dirt.visible = false
 			_is_clean = true
 			_set_enabled(false)
-			emit_signal("processed")
+			emit_signal("processed", self, [$Carrot], [])
 		else:
 			dirt.self_modulate = Color(prev.r, prev.g, prev.b, new_alpha)
 		if not _scrub_sound.playing:

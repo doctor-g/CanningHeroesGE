@@ -40,7 +40,7 @@ func _peel():
 	_next_image_index += 1
 	$PeelingSound.play()
 	if _next_image_index == _IMAGES.size():
-		emit_signal("processed")
+		emit_signal("processed", self, [$Sprite], [])
 		_remove_interaction_areas()
 		
 # Remove the interaction areas if they still exist

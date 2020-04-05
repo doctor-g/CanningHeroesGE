@@ -15,4 +15,8 @@ func _on_BottomChop_chop():
 func _on_chop_animation_complete():
 	_chops += 1
 	if _chops == 2:
-		emit_signal("processed")
+		var bottom = $Sprites/Bottom/BottomSprite
+		var mid = $Sprites/MiddleSprite
+		var top = $Sprites/Top/TopSprite
+		
+		emit_signal("processed", self, [bottom,mid], [top])		

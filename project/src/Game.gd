@@ -134,31 +134,55 @@ func _add_food_to(workstation:Node2D):
 		$Food.add_child(food)
 		tween.interpolate_property(food, "position", source, destination, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		tween.start()
-		food.connect("processed", self, "_on_food_processed", [food, workstation])
+		food.connect("processed", self, "_on_food_processed", [workstation])
 
 
-func _on_food_processed(food:Food, workstation):
+func _on_food_processed(food:Food, good_parts:Array, scrap:Array, workstation):
 	# Track completion and adjust Z so the latest is on top
 	_completed = _completed + 1
-	food.z_index = _completed
+
+	# Reparent the good parts and scrap to the game's Food node
+	for piece in good_parts + scrap:
+		piece.z_index = _completed
+		var old_transform = piece.global_transform
+		piece.get_parent().remove_child(piece)
+		$Food.add_child(piece)
+		piece.global_transform = old_transform
 	
 	# Fly the food to the tray
+	for piece in good_parts:
+		var destination = _tray.get_global_transform().xform(_tray.get_food_target())
+		_send_food_to(piece, destination)
+		
+	# Fly the scrap to the scrap point
+	for piece in scrap:
+		var destination = workstation.get_global_transform().xform(workstation.get_scrap_point())
+		_send_food_to(piece, destination)
+	
+	# Add a new food
+	_add_food_to(workstation)
+
+
+func _send_food_to(food:Sprite, destination:Vector2)->void:
+	# Tween position
 	var tween = _tween_pool.create()
-	var destination = _tray.get_global_transform().xform(_tray.get_food_target())
 	tween.interpolate_property(food, "position", null, destination, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 	
-	# Add a new food
-	# TODO: There is a rare error where this fails because the round already
-	# advanced. The thing to do is probably do more careful management
-	# of state in this class.
-	_add_food_to(workstation)
+	# Tween rotation
+	var rot_tween = _tween_pool.create()
+	var rot_current = food.rotation
+	var rot_target = rand_range(rot_current-3.14/4,rot_current+3.14/4)
+	rot_tween.interpolate_property(food, "rotation", null, rot_target, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	rot_tween.start()
 
 
 func _on_Timer_timeout():
 	# Prevent further interaction with the food on the table
 	for food in $Food.get_children():
-		(food as Food).enabled = false
+		# Some children are Food, some are sprite parts
+		if food is Food:
+			(food as Food).enabled = false
 		
 	# Advance the round
 	_round += 1

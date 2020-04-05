@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41.9984, 72.0002 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "LeftChop"
 length = 0.2
 tracks/0/type = "value"
@@ -52,8 +52,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "MiddleChop"
+[sub_resource type="Animation" id=3]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Left:position")
@@ -94,7 +93,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "RightChop"
 length = 0.2
 tracks/0/type = "value"
@@ -136,7 +135,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 56.1606, 31.5907 )
 
 [node name="Tomato" type="Node2D"]
@@ -194,9 +193,9 @@ position = Vector2( 0, 7.99997 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/LeftChop = SubResource( 4 )
-anims/MiddleChop = SubResource( 2 )
-anims/RightChop = SubResource( 5 )
+anims/LeftChop = SubResource( 2 )
+anims/MiddleChop = SubResource( 3 )
+anims/RightChop = SubResource( 4 )
 
 [node name="DiceSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
@@ -205,14 +204,14 @@ stream = ExtResource( 6 )
 position = Vector2( -66.4702, 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftChopArea"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="RightChopArea" type="Area2D" parent="."]
 position = Vector2( 71.7271, 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightChopArea"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 disabled = true
 [connection signal="input_event" from="MiddleChopArea" to="." method="_on_MiddleChopArea_input_event"]
 [connection signal="input_event" from="LeftChopArea" to="." method="_on_LeftChopArea_input_event"]

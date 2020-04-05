@@ -45,7 +45,7 @@ func _advance_step()->void:
 	$Sprite.texture = IMAGES[_step]
 	if _step == IMAGES.size() - 1:
 		_remove_interaction_areas()
-		emit_signal("processed")
+		emit_signal("processed", self, [$Sprite], [])
 		
 		
 func _remove_interaction_areas():

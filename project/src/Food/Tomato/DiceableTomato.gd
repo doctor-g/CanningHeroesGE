@@ -2,6 +2,13 @@ extends "../Food.gd"
 
 var _sides_complete := 0
 
+onready var _all_pieces := [
+	$Left/BottomLeft/Sprite,
+	$Left/TopLeft/Sprite,
+	$Right/BottomRight/Sprite,
+	$Right/TopRight/Sprite,
+]
+
 func _set_enabled(value)->void:
 	._set_enabled(value)
 	if not enabled:
@@ -22,6 +29,8 @@ func _on_MiddleChopArea_input_event(_viewport, event, _shape_idx):
 			
 	
 func _enable_side_chop_areas():
+	if not enabled: # If this has been disabled, then there's nothing to do.
+		return 
 	for i in [$LeftChopArea/CollisionShape2D, $RightChopArea/CollisionShape2D]:
 		i.disabled = false
 
@@ -46,4 +55,4 @@ func _side_chop(anim_name:String, area_to_remove:Node)->void:
 func _on_side_animation_complete()->void:
 	_sides_complete += 1
 	if _sides_complete == 2:
-		emit_signal("processed")
+		emit_signal("processed", self, _all_pieces, [])

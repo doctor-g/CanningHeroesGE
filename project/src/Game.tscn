@@ -80,16 +80,28 @@ __meta__ = {
 [node name="Workstation1" parent="Workstations" instance=ExtResource( 1 )]
 position = Vector2( 569.647, 886.77 )
 
+[node name="ScrapPoint" parent="Workstations/Workstation1" index="2"]
+position = Vector2( -346.156, -6.63153 )
+
 [node name="Workstation2" parent="Workstations" instance=ExtResource( 1 )]
 position = Vector2( 1374.2, 886.77 )
+
+[node name="ScrapPoint" parent="Workstations/Workstation2" index="2"]
+position = Vector2( 362.729, -8.90363 )
 
 [node name="Workstation3" parent="Workstations" instance=ExtResource( 1 )]
 position = Vector2( 1717.75, 390.531 )
 rotation = -1.57079
 
+[node name="ScrapPoint" parent="Workstations/Workstation3" index="2"]
+position = Vector2( 315.016, 0.180664 )
+
 [node name="Workstation4" parent="Workstations" instance=ExtResource( 1 )]
 position = Vector2( 281.887, 405.213 )
 rotation = 1.57079
+
+[node name="ScrapPoint" parent="Workstations/Workstation4" index="2"]
+position = Vector2( -314.347, 11.5448 )
 
 [node name="Food" type="Node" parent="."]
 
@@ -126,3 +138,11 @@ position = Vector2( -1920, 0 )
 [connection signal="game_selected" from="MainMenu" to="." method="_on_MainMenu_game_selected"]
 [connection signal="timeout" from="TickingAlarm/Timer" to="TickingAlarm" method="_on_Timer_timeout"]
 [connection signal="dismissed" from="Credits" to="." method="_on_Credits_dismissed"]
+
+[editable path="Workstations/Workstation1"]
+
+[editable path="Workstations/Workstation2"]
+
+[editable path="Workstations/Workstation3"]
+
+[editable path="Workstations/Workstation4"]

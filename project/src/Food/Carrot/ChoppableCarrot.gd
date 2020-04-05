@@ -20,7 +20,10 @@ func _on_ChopPoint2_chop()->void:
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Split2":
-		emit_signal("processed")
+		emit_signal("processed", 
+				self, 
+				[$Offset/SecondPart/CarrotMid, $Offset/SecondPart/ThirdPart/CarrotBottom], 
+				[$Offset/CarrotTop])
 
 
 func _set_enabled(value):

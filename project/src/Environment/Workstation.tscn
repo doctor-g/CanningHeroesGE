@@ -11,3 +11,6 @@ texture = ExtResource( 1 )
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2( 0, 400 )
+
+[node name="ScrapPoint" type="Node2D" parent="."]
+position = Vector2( -284.81, -4.3595 )
