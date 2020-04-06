@@ -4,6 +4,9 @@ signal chop
 class_name ChopPoint
 
 export(float) var radius = 0
+
+var enabled := true setget _set_enabled
+
 var _is_choppable := false 
 var _last_radius : float = 0
 
@@ -39,3 +42,7 @@ func _enable_chop()->void:
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name=="Despawn":
 		queue_free()
+
+func _set_enabled(value)->void:
+	enabled = value
+	$CollisionShape2D.disabled = not enabled	

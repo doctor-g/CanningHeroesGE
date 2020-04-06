@@ -137,7 +137,7 @@ func _add_food_to(workstation:Node2D):
 		food.connect("processed", self, "_on_food_processed", [workstation])
 
 
-func _on_food_processed(food:Food, good_parts:Array, scrap:Array, workstation):
+func _on_food_processed(_food:Food, good_parts:Array, scrap:Array, workstation):
 	# Track completion and adjust Z so the latest is on top
 	_completed = _completed + 1
 
