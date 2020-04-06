@@ -11,6 +11,9 @@ set -x
 TARGET=index
 DIR=build/HTML5
 
+# Clear any old builds
+rm -rf $DIR
+
 # Increment tbe build number
 bash increment_build.sh
 
