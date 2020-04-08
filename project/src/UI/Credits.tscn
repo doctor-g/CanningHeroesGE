@@ -16,7 +16,7 @@ use_filter = true
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
+size = 22
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -120,12 +120,12 @@ align = 1
 [node name="AboutText" type="Label" parent="Cookbook/Interface/LeftPage/VBoxContainer"]
 margin_top = 49.0
 margin_right = 671.0
-margin_bottom = 564.0
+margin_bottom = 488.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "This game was created through an immersive learning collaboration between Ball State University and Minnetrista. Happy Accident Studio was a multidisciplinary undergraduate student team created specifically for this project.
 
-The original version was created for installation on a multitouch surface at Minnetrista. This special edition was rebuilt from the original assets so that you can play the game anywhere you like.
+The original version was created for installation on a multitouch surface in the Oakhurst Home at Minnetrista. This special edition was rebuilt from the original assets so that you can play the game in your own home or anywhere you like.
 
 Happy Accident Studio would like to give special thanks to the Computer Science Department and the Office of Immersive Learning at Ball State University."
 autowrap = true
